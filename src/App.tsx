@@ -1,11 +1,13 @@
 import React from 'react';
+import { Typography, createTheme, Container,ThemeProvider, AppBar, CssBaseline, Grid, Toolbar, Link } from '@mui/material';
+import Nav from './Nav';
 
+const App = () => {
 
-function App() {
   return (
-    <div className="App">
-      <h1>Life on Mars</h1>
-    </div>
+    <>
+     <Nav />
+    </>
   );
 }
 
