@@ -1,11 +1,11 @@
-import React from 'react';
+import { useState }from 'react';
 import { Typography, Container, Box, Button, AppBar, CssBaseline, Grid, Toolbar, Link } from '@mui/material';
 
 const pages = ['Weather', 'Properties', 'Home'];
 
 const Nav = () => {
 
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const [anchorElNav, setAnchorElNav] = useState(null)
 
   const handleNavMenu = () => {
     setAnchorElNav(null);
