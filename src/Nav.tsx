@@ -58,7 +58,7 @@ const Nav = () => {
         </Container>
       </AppBar>
     </>
-  );
+  )
 }
 
 export default Nav;
