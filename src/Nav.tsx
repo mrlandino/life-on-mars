@@ -20,8 +20,8 @@ const Nav = () => {
             <Typography
               variant="h4"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              href='/Home'
               sx={{
                 mr: 15,
                 ml: 5,
@@ -41,6 +41,8 @@ const Nav = () => {
                 <Button
                   key={page}
                   onClick={handleNavMenu}
+                  component={Link}
+                  href={`/${page}`}
                   sx={{
                     mt: 5,
                     mr: 5,
