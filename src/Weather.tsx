@@ -1,10 +1,15 @@
-
+import React from "react";
+import { Grid, Box, Container, Typography, Toolbar } from "@mui/material";
+import './App.css'
+import Nav from "./Nav";
+import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material"
 
 const Weather = () => {
   return (
-    <>
-      <h1>Weather</h1>
-    </>
+    <Container className='main-weather'>
+      <Nav />
+ 
+    </Container>
    )
 }
 
