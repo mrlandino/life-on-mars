@@ -20,9 +20,9 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ['Home', 'Weather', 'Properties'];
+const navItems = ['Images', 'Calendar', 'Cart'];
 
-export default function DrawerAppBar(props: Props) {
+const Nav = (props: Props) => {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -33,7 +33,7 @@ export default function DrawerAppBar(props: Props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center'}}>
       <Typography variant="h6" sx={{ my: 2 , color: '#F18C43', fontFamily: 'Poppins' }}>
-        Life on Mars
+        SpaceCal
       </Typography>
       <Divider />
       <List>
@@ -67,10 +67,10 @@ export default function DrawerAppBar(props: Props) {
           <Typography
             variant="h4"
             component={Link}
-            href='/home'
+            href='/'
             sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' }, color: '#F18C43', textDecoration: 'none', fontFamily: 'Poppins'}}
           >
-            Life on Mars
+            SpaceCal
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
@@ -101,3 +101,5 @@ export default function DrawerAppBar(props: Props) {
     </Box>
   );
 }
+
+export default Nav;
