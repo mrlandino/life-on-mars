@@ -1,8 +1,7 @@
-import Nav from './Nav';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import Properties from './Properties';
-import Weather from './Weather';
+import Images from './Images';
+import Calendar from './Calendar';
 import './App.css'
 
 const App = () => {
@@ -10,9 +9,9 @@ const App = () => {
   return (
     <main>
       <Routes>
-        <Route path="/Home" element={<Home/>}/>
-        <Route path="/Weather" element={<Weather/>}/>
-        <Route path="/Properties" element={<Properties/>}/>
+        <Route path='/' element={<Home/>}/>
+        <Route path="/Images" element={<Images/>}/>
+        <Route path="/Calendar" element={<Calendar/>}/>
       </Routes>
     </main>
   );
