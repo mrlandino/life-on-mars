@@ -4,6 +4,8 @@ import './App.css'
 import Nav from "./Nav";
 import ImageCard from "./ImageCard";
 import { createTheme, ThemeProvider, responsiveFontSizes, } from "@mui/material"
+// import Draggable from "react-draggable";
+import ChooseMonth from "./ChooseMonth";
 
 let  theme = createTheme({
   components: {
@@ -23,14 +25,20 @@ let  theme = createTheme({
   }
 })
 
+type Calendar = {
+  calendarImages: any;
+}
+
 theme = responsiveFontSizes(theme)
 
-const Calendar = () => {
-  const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
+const Calendar: React.FC<Calendar> = ({calendarImages}) => {
+  // const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
+
+  const months: number[]= [1,2,3,4,5,6,7,8,9,10,11,12]
   
   const calendarCards = months.map(month => {
     return (
-      <ImageCard month={month} key={month}/>
+      <ImageCard key={month}/>
     )
   })
   return (
@@ -67,7 +75,7 @@ const Calendar = () => {
             </Grid>
         </Grid>
       </ThemeProvider>  
-      <Grid container spacing={2} justifyContent='center'>
+      <Grid container spacing={2} xs={12} sm={6} md={3} justifyContent='center'>
           {calendarCards}
       </Grid>
     </Container>
