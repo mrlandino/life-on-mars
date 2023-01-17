@@ -16,18 +16,18 @@ type ImageCard = {
     url?:string;
   };
   index:number;
-  setImageList: React.Dispatch<React.SetStateAction<object[]>>
-  imageList: object[];
+  setCalendarImages: React.Dispatch<React.SetStateAction<object[]>>
+  calendarImages: object[];
 }
   
-  const BasicImageCard: React.FC<ImageCard> = ({image, index, setImageList, imageList}) => {
+  const BasicImageCard: React.FC<ImageCard> = ({image, index, setCalendarImages, calendarImages}) => {
     
     const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-      let imageList1 = [...imageList]
+      let imageList1 = [...calendarImages]
       const updateList = imageList1.filter(thisImage => thisImage !== image)
-      setImageList(updateList)
+      setCalendarImages(updateList)
     }
-    
+
     return (
         // <Grid item xs={12} sm={6} md={3} sx={{justifyContent:'center', alignItems: 'center'}}>
           <Card sx={{ width: '250px', margin: '15px', justifyContent:'center', textAlign: 'center'}}>

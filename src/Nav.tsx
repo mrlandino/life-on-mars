@@ -13,7 +13,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link'
+import { Link } from 'react-router-dom';
 
 interface Props {
   window?: () => Window;
@@ -39,7 +39,8 @@ const Nav = (props: Props) => {
       <List>
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton component={Link} href={`/${item}`} sx={{ textAlign: 'center', fontFamily: 'Poppins' }}>
+            <ListItemButton component={Link} to={`/${item}`} sx={{ textAlign: 'center', fontFamily: 'Poppins' }}>
+              {/* need to add link with React Router so that the state will persist */}
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
@@ -67,14 +68,14 @@ const Nav = (props: Props) => {
           <Typography
             variant="h4"
             component={Link}
-            href='/'
+            to='/'
             sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' }, color: '#F18C43', textDecoration: 'none', fontFamily: 'Poppins'}}
           >
             SpaceCal
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} component={Link} href={`/${item}`} sx={{ color: 'black', fontFamily: 'Poppins'}}>
+              <Button key={item} component={Link} to={`/${item}`} sx={{ color: 'black', fontFamily: 'Poppins'}}>
                 {item}
               </Button>
             ))}

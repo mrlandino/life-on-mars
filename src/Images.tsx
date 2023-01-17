@@ -53,6 +53,7 @@ theme = responsiveFontSizes(theme)
 const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarImages, calendarImages}) => {
 
   const [imageList, setImageList] = useState<object[]>([])
+  //fix the above imageList so that you dont need to use it
   const todaysDate = new Date().toISOString().slice(0, 10)
   // const todaysRealDate = Instant.now().toISOString().slice(0,10)
 
@@ -63,13 +64,14 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
   //need to add error handling for data.media_type === 'video' and put a replacement message and image if you want to. Also if the data.media_type is falsy then add the replacement message and imgage. 
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    setImageList([...imageList, selectedImage]);
-    setCalendarImages(imageList);
+    // setImageList([...imageList, selectedImage]);
+    // setCalendarImages(imageList);
+    setCalendarImages([...calendarImages, selectedImage])
   }
 
-  const calendarCards = imageList.map((image, index) => {
+  const calendarCards = calendarImages.map((image, index) => {
     return (
-      <BasicImageCard key={index} image={image} index={index} setImageList={setImageList} imageList={imageList}/>
+      <BasicImageCard key={index} image={image} index={index} setCalendarImages={setCalendarImages} calendarImages={calendarImages}/>
     )
   })
 
@@ -121,6 +123,7 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
         <DatePicker setSelectedImage={setSelectedImage}/>
       </Grid>
       <Grid container spacing={2} justifyContent='center' mt='20px'>
+        {calendarImages.length > 0?
         <Grid container sx={{justifyContent:'center'}}>
           <Grid item>
             <Typography variant='h5' component='h5' sx={{fontFamily:'Poppins'}}>
@@ -128,7 +131,12 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
             </Typography>
           </Grid>
         </Grid>
+        :
+        <>
+        </>
+        }
         {calendarCards}
+        {calendarImages.length ===12?
         <Grid container sx={{justifyContent:'center'}}>
           <Grid item>
             <Button>
@@ -136,6 +144,11 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
             </Button>
           </Grid>
         </Grid>
+        :
+        <>
+        </>
+      }
+
       </Grid>
       <Card sx={{ maxWidth: '100%', mt: '30px'}}>
       <CardActionArea>
