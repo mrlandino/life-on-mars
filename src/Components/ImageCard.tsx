@@ -11,7 +11,7 @@ type ImageCard = {
     return (
           <Card sx={{ minWidth: 275, margin: '15px', justifyContent:'center', textAlign: 'center'}}>
             <CardContent>
-                <ChooseMonth />
+                {/* <ChooseMonth /> */}
                 <CardMedia 
                   className='calendar-image' 
                   image={require('./Images/Pleiades_Estes_3000.jpeg')}

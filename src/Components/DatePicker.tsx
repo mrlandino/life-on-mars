@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Grid, Button } from '@mui/material';
-import { getImageByDate } from './apiCalls';
+import { getImageByDate } from '../apiCalls';
 
 type DatePicker = {
   setSelectedImage: React.Dispatch<React.SetStateAction<any>>
@@ -15,7 +15,6 @@ const DatePicker: React.FC<DatePicker> = ({setSelectedImage}) => {
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
     getImageByDate(value)
     .then(data => setSelectedImage(data))
- 
     // clearInputs();
   };
 

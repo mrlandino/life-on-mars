@@ -1,10 +1,24 @@
 import React from "react";
-import { Grid, Box, Container, Typography, Toolbar, Button, List, ListItem, ListItemIcon, ListItemText, Link,createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material";
-import './App.css'
-import Nav from "./Nav";
+import { 
+  Grid,
+  Container,
+  Typography,
+  Toolbar,
+  Button,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  createTheme,
+  ThemeProvider,
+  responsiveFontSizes
+} from "@mui/material";
+import '../App.css'
+import Nav from "../Components/Nav";
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import PublicOffOutlinedIcon from '@mui/icons-material/PublicOffOutlined';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import { Link } from 'react-router-dom';
 
 let  theme = createTheme({
   components: {
@@ -39,7 +53,8 @@ const Home = () => {
  return (
   <Container className='main-home'>
     <Nav />
-    <Toolbar></Toolbar>
+    <Toolbar></Toolbar> 
+    {/* try and find a better way to creat space than using the toolbar  */}
       <ThemeProvider theme={theme}>
         <Grid container spacing={0} sx={{justifyContent:'center'}}>
             <Grid item>
@@ -69,6 +84,7 @@ const Home = () => {
               </Typography>
             </Grid>
         </Grid>
+        
         <Grid container direction='row' justifyContent="center" sx={{flexDirection: {xs:'column', sm: 'row'}}}>
           <Grid item xs={12} sm={4} >
             <List sx={{mt: '20px'}}>
@@ -93,7 +109,7 @@ const Home = () => {
             </List>
             <Grid container justifyContent={'center'}>
               <Grid item xs={4} sm={4} sx={{justifyContent: 'center', alignItems: 'center', mt: '15px', mb: '20px'}}>
-                <Button variant="contained" component={Link} href={`/images`} noWrap>
+                <Button sx={{whiteSpace:'nowrap'}}variant="contained" component={Link} to={'/Images'}>
                   Begin Design
                 </Button>
               </Grid>
@@ -101,7 +117,7 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={8} md={6}>
             <Grid container direction="row" justifyContent="center" alignItems="center" sx={{mb: '20px', mt: '30px'}}>
-              <img className='home-image'src={require('./Images/Space_Calendars_2023.png')}/>            
+              <img className='home-image'src={require('../Images/Space_Calendars_2023.png')}/>            
             </Grid>
           </Grid>
         </Grid>

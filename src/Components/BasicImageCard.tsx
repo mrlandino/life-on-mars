@@ -1,8 +1,7 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { CardMedia, Typography, Grid, Button, Container } from '@mui/material';
-import ChooseMonth from "./ChooseMonth";
+import { CardMedia, Typography, Grid, Button } from '@mui/material';
 
 type ImageCard = {
   key: number;
@@ -15,7 +14,7 @@ type ImageCard = {
     title?:string;
     url?:string;
   };
-  index:number;
+  index: number;
   setCalendarImages: React.Dispatch<React.SetStateAction<object[]>>
   calendarImages: object[];
 }
@@ -29,7 +28,6 @@ type ImageCard = {
     }
 
     return (
-        // <Grid item xs={12} sm={6} md={3} sx={{justifyContent:'center', alignItems: 'center'}}>
           <Card sx={{ width: '250px', margin: '15px', justifyContent:'center', textAlign: 'center'}}>
             <CardContent sx={{justifyContent:'center', alignContent: 'center'}}>
               <Grid container sx={{mb: '5px', alignItems:"center"}}>
@@ -51,7 +49,6 @@ type ImageCard = {
                 />
             </CardContent>
           </Card>
-        // </Grid>
   );
 }
 

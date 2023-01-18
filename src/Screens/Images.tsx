@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import './App.css'
-import Nav from "./Nav";
-import DatePicker from "./DatePicker";
+import React, { useEffect } from "react";
+import '../App.css'
+import Nav from "../Components/Nav";
+import DatePicker from "../Components/DatePicker";
 import { createTheme, ThemeProvider, responsiveFontSizes, Card, CardContent, CardMedia, Button, CardActionArea, CardActions, Grid, Container, Typography, Toolbar  } from "@mui/material"
-import { getImageByDate } from './apiCalls';
-import CircularIndeterminate from "./Loading";
-import BasicImageCard from "./BasicImageCard";
+import { getImageByDate } from '../apiCalls';
+import CircularIndeterminate from "../Components/Loading";
+import BasicImageCard from "../Components/BasicImageCard";
+import { Link } from 'react-router-dom';
 
 let theme = createTheme({
   components: {
@@ -17,12 +18,26 @@ let theme = createTheme({
           },
           style: {
             fontFamily: 'Poppins'
-            
           }
         },
         {
           props: {
             variant: 'subtitle1',
+          },
+          style: {
+            fontFamily: 'Poppins'
+          }
+        },
+        {
+          props: {
+            variant: 'h4',
+          },
+          style: {
+            fontFamily: 'Poppins'
+          }
+        },{
+          props: {
+            variant: 'body2',
           },
           style: {
             fontFamily: 'Poppins'
@@ -44,18 +59,27 @@ type Images = {
     url?:string;
   };
   setSelectedImage: React.Dispatch<React.SetStateAction<object>>
-  calendarImages: object[];
+  calendarImages: Image[];
   setCalendarImages: React.Dispatch<React.SetStateAction<object[]>>
+  setFinalCalendar: React.Dispatch<React.SetStateAction<object[]>>
+}
+
+type Image= {
+  date?:string;
+  explanation?:string;
+  hdurl?:string;
+  media_type?:string;
+  service_version?:string;
+  title?:string;
+  url?:string;
 }
 
 theme = responsiveFontSizes(theme)
 
-const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarImages, calendarImages}) => {
+const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarImages, calendarImages, setFinalCalendar}) => {
+  const monthNames: string[] = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 
-  const [imageList, setImageList] = useState<object[]>([])
-  //fix the above imageList so that you dont need to use it
   const todaysDate = new Date().toISOString().slice(0, 10)
-  // const todaysRealDate = Instant.now().toISOString().slice(0,10)
 
   useEffect(() => {
     getImageByDate('2022-01-13')
@@ -64,9 +88,27 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
   //need to add error handling for data.media_type === 'video' and put a replacement message and image if you want to. Also if the data.media_type is falsy then add the replacement message and imgage. 
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    // setImageList([...imageList, selectedImage]);
-    // setCalendarImages(imageList);
     setCalendarImages([...calendarImages, selectedImage])
+  }
+
+  const handleGenerateCalendar = (event: React.MouseEvent<HTMLElement>, text: string) => {
+    // console.log(calendarImages)
+    // const sendFinal : object[] = calendarImages.reduce((acc: object[], image: Image) => {
+    //     monthNames.forEach(month => {
+    //       acc.push({month: month, imageUrl: image.url})
+    //     })
+    //   return acc;
+    // }, [])
+    // sendFinal.splice(12, 143)
+    // console.log(sendFinal)
+    const sendFinal : object[] = [];
+      for (let i = 0; i <= 11; i++ ) {
+        sendFinal.push({
+          // month: monthNames[i],
+          imageURL: calendarImages[i].url
+        })
+      }
+    setFinalCalendar(sendFinal)
   }
 
   const calendarCards = calendarImages.map((image, index) => {
@@ -118,7 +160,6 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
             </Typography>
           </Grid>
         </Grid>
-      </ThemeProvider>  
       <Grid container spacing={2} justifyContent='center'>
         <DatePicker setSelectedImage={setSelectedImage}/>
       </Grid>
@@ -126,7 +167,7 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
         {calendarImages.length > 0?
         <Grid container sx={{justifyContent:'center'}}>
           <Grid item>
-            <Typography variant='h5' component='h5' sx={{fontFamily:'Poppins'}}>
+            <Typography variant='h4' component='h4'>
               Images for your Calendar
             </Typography>
           </Grid>
@@ -136,10 +177,10 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
         </>
         }
         {calendarCards}
-        {calendarImages.length ===12?
-        <Grid container sx={{justifyContent:'center'}}>
+        {calendarImages.length === 12?
+        <Grid container sx={{justifyContent:'center', mt: '12px'}}>
           <Grid item>
-            <Button>
+            <Button variant='contained' component={Link} to={'/Calendar'} onClick={(e) => handleGenerateCalendar(e, 'clicked')}>
               Generate Calendar
             </Button>
           </Grid>
@@ -147,32 +188,41 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
         :
         <>
         </>
-      }
-
+        }
       </Grid>
-      <Card sx={{ maxWidth: '100%', mt: '30px'}}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="40%"
-          image={selectedImage.url}
-          alt={selectedImage.title}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-          {selectedImage.title}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-          {selectedImage.explanation}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary" onClick={(e) => handleClick(e, 'clicked')}>
-          Add to Calendar
-        </Button>
-      </CardActions>
-    </Card>
+      <Grid container sx={{justifyContent:'center'}}>
+        <Grid item xs={12} sm={8} md={8} >
+          <Card sx={{mt: '30px', justifyContent:'center'}}>
+              <CardMedia
+                component="img"
+                height="40%"
+                image={selectedImage.url}
+                alt={selectedImage.title}
+                />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                {selectedImage.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                {selectedImage.explanation}
+                </Typography>
+              </CardContent>
+            {calendarImages.length < 12?
+            <CardActions>
+              <Button sx={{mb: '15px', ml: '50px'}} variant= 'contained' size="small" color="primary" onClick={(e) => handleClick(e, 'clicked')}>
+                Add image to Calendar
+              </Button>
+            </CardActions>
+            :
+            <>
+            </>
+          }
+
+          </Card>
+        </Grid>
+      </Grid>
+    </ThemeProvider>  
+    <Toolbar></Toolbar>
     </Container>
     //  : 
     //  <Container className='main-images'>
@@ -186,22 +236,22 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
     //             component='h1' 
     //             // mt={2} 
     //             sx={{
-    //               color: 'black', 
-    //             }}
-    //             >
-    //             Search
-    //           </Typography>
-    //         </Grid>
-    //         <Grid item>
-    //           <Typography 
-    //             variant='h1'
-    //             component='h2'
-    //             // mt={2} 
-    //             ml={2} 
-    //             sx={{
-    //               fontWeight:'800',
-    //               color: '#F18C43'
-    //               }}
+      //               color: 'black', 
+      //             }}
+      //             >
+      //             Search
+      //           </Typography>
+      //         </Grid>
+      //         <Grid item>
+      //           <Typography 
+      //             variant='h1'
+      //             component='h2'
+      //             // mt={2} 
+      //             ml={2} 
+      //             sx={{
+        //               fontWeight:'800',
+        //               color: '#F18C43'
+        //               }}
     //               >
     //             Images
     //           </Typography>

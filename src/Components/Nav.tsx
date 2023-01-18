@@ -40,7 +40,6 @@ const Nav = (props: Props) => {
         {navItems.map((item) => (
           <ListItem key={item} disablePadding>
             <ListItemButton component={Link} to={`/${item}`} sx={{ textAlign: 'center', fontFamily: 'Poppins' }}>
-              {/* need to add link with React Router so that the state will persist */}
               <ListItemText primary={item} />
             </ListItemButton>
           </ListItem>
