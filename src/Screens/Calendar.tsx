@@ -1,8 +1,8 @@
 import React from "react";
-import { Grid, Box, Container, Typography, Toolbar } from "@mui/material";
+import { Grid, Container, Typography, Toolbar } from "@mui/material";
 import '../App.css'
 import Nav from "../Components/Nav";
-import { createTheme, ThemeProvider, responsiveFontSizes, Button} from "@mui/material"
+import { createTheme, ThemeProvider, responsiveFontSizes } from "@mui/material"
 import CalendarImageCard from "../Components/CalendarImageCard";
 import CartModal from "../Components/CartModal";
 
@@ -33,7 +33,7 @@ type Calendar = {
 
 theme = responsiveFontSizes(theme)
 
-const Calendar: React.FC<Calendar> = ({calendarImages, setCalendarImages, finalCalendar, setFinalCalendar}) => {
+const Calendar: React.FC<Calendar> = ({setCalendarImages, finalCalendar, setFinalCalendar}) => {
  
   const [monthList, setMonthList] = React.useState([
     'JANUARY',

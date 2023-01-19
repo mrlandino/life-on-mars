@@ -7,15 +7,10 @@ type DatePicker = {
 }
 const DatePicker: React.FC<DatePicker> = ({setSelectedImage}) => {
   const [value, setValue] = useState<string>('');
-  
-  const clearInputs = () => {
-    setValue('')
-  }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
     getImageByDate(value)
     .then(data => setSelectedImage(data))
-    // clearInputs();
   };
 
   const handleChange = (

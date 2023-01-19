@@ -53,7 +53,6 @@ const Home = () => {
   <Container className='main-home'>
     <Nav />
     <Toolbar></Toolbar> 
-    {/* try and find a better way to creat space than using the toolbar  */}
       <ThemeProvider theme={theme}>
         <Grid container spacing={0} sx={{justifyContent:'center'}}>
             <Grid item>

@@ -84,7 +84,6 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
     getImageByDate('2022-01-13')
     .then(data => setSelectedImage(data))
   }, [])
-  //need to add error handling for data.media_type === 'video' and put a replacement message and image if you want to. Also if the data.media_type is falsy then add the replacement message and imgage. 
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
     setCalendarImages([...calendarImages, selectedImage])
@@ -154,29 +153,29 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
       </Grid>
       <Grid container spacing={2} justifyContent='center' mt='20px'>
         {calendarImages.length > 0?
-        <Grid container sx={{justifyContent:'center'}}>
-          <Grid item>
-            <Typography variant='h4' component='h4'>
-              Images for your Calendar
-            </Typography>
+          <Grid container sx={{justifyContent:'center'}}>
+            <Grid item>
+              <Typography variant='h4' component='h4'>
+                Images for your Calendar
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
         :
-        <>
-        </>
+            <>
+            </>
         }
         {calendarCards}
         {calendarImages.length === 12?
-        <Grid container sx={{justifyContent:'center', mt: '12px'}}>
-          <Grid item>
-            <Button variant='contained' component={Link} to={'/Calendar'} onClick={(e) => handleGenerateCalendar(e, 'clicked')}>
-              Generate Calendar
-            </Button>
+          <Grid container sx={{justifyContent:'center', mt: '12px'}}>
+            <Grid item>
+              <Button variant='contained' component={Link} to={'/Calendar'} onClick={(e) => handleGenerateCalendar(e, 'clicked')}>
+                Generate Calendar
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
         :
-        <>
-        </>
+          <>
+          </>
         }
       </Grid>
       <Grid container sx={{justifyContent:'center'}}>
@@ -190,22 +189,22 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
                 />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                {selectedImage.title}
+                  {selectedImage.title}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                {selectedImage.explanation}
+                  {selectedImage.explanation}
                 </Typography>
               </CardContent>
             {calendarImages.length < 12?
-            <CardActions>
-              <Button sx={{mb: '15px', ml: '50px'}} variant= 'contained' size="small" color="primary" onClick={(e) => handleClick(e, 'clicked')}>
-                Add image to Calendar
-              </Button>
-            </CardActions>
+              <CardActions>
+                <Button sx={{mb: '15px', ml: '50px'}} variant= 'contained' size="small" color="primary" onClick={(e) => handleClick(e, 'clicked')}>
+                  Add image to Calendar
+                </Button>
+              </CardActions>
             :
-            <>
-            </>
-          }
+              <>
+              </>
+            }
           </Card>
         </Grid>
       </Grid>
