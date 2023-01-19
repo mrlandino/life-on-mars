@@ -2,9 +2,7 @@ import React from "react";
 import { Grid, Box, Container, Typography, Toolbar } from "@mui/material";
 import '../App.css'
 import Nav from "../Components/Nav";
-import ImageCard from "../Components/ImageCard";
 import { createTheme, ThemeProvider, responsiveFontSizes, Button} from "@mui/material"
-import ChooseMonth from "../Components/ChooseMonth";
 import CalendarImageCard from "../Components/CalendarImageCard";
 import CartModal from "../Components/CartModal";
 
@@ -28,15 +26,15 @@ let  theme = createTheme({
 
 type Calendar = {
   calendarImages: object[];
+  setCalendarImages: React.Dispatch<React.SetStateAction<object[]>>;
   finalCalendar: object[];
   setFinalCalendar: React.Dispatch<React.SetStateAction<object[]>>
 }
 
 theme = responsiveFontSizes(theme)
 
-const Calendar: React.FC<Calendar> = ({calendarImages, finalCalendar, setFinalCalendar}) => {
+const Calendar: React.FC<Calendar> = ({calendarImages, setCalendarImages, finalCalendar, setFinalCalendar}) => {
  
-  // const [itemsInCart, setItemsInCart] = React.useState(false)
   const [monthList, setMonthList] = React.useState([
     'JANUARY',
     'FEBRUARY',
@@ -50,40 +48,13 @@ const Calendar: React.FC<Calendar> = ({calendarImages, finalCalendar, setFinalCa
     'OCTOBER',
     'NOVEMBER', 
     'DECEMBER'])
-    const [usedMonths, setUsedMonths] = React.useState([])
-
-  // const finalCalenderToBuy = {'JANUARY': '', 'FEBRUARY': '', 'MARCH':'', 'APRIL':'', 'MAY':'', 'JUNE':'', 'JULY':'', 'AUGUST':'', 'SEPTEMBER':'', 'OCTOBER':'', 'NOVEMBER':'', 'DECEMBER':''}
-  // const finalCalenderToBuy1 : object[] = [
-  //   {month: 'Jan', imageURL: ''}, 
-  //   {month: 'Feb', imageURL: ''},
-  //   {month: 'Mar', imageURL: ''},
-  //   {month: 'Apr', imageURL: ''},
-  //   {month: 'May', imageURL: ''},
-  //   {month: 'Jun', imageURL: ''},
-  //   {month: 'Jul', imageURL: ''},
-  //   {month: 'Aug', imageURL: ''},
-  //   {month: 'Sep', imageURL: ''},
-  //   {month: 'Oct', imageURL: ''},
-  //   {month: 'Nov', imageURL: ''},
-  //   {month: 'Dec', imageURL: ''},
-  // ]
-
-  // const months: number[]= [1,2,3,4,5,6,7,8,9,10,11,12]
+  const [usedMonths, setUsedMonths] = React.useState([])
   
   const calendarCards = finalCalendar.map((image, index) => {
     return (
       <CalendarImageCard key={index} image={image} index={index} finalCalendar={finalCalendar} setFinalCalendar={setFinalCalendar} monthList={monthList} usedMonths={usedMonths} setUsedMonths={setUsedMonths} setMonthList={setMonthList}/>
     )
   })
-
-  const handleAddToCart = (event: React.MouseEvent<HTMLElement>, text: string) => {
-
-  }
-  // const finalCalendarLayout = finalCalenderToBuy1.map((image, index) => {
-  //   return (
-  //     <CalendarImageCard key={index} image={image} index={index}/>
-  //   )
-  //   })
 
   return (
     <Container className='main-calendar' maxWidth={'xl'}>
@@ -118,7 +89,6 @@ const Calendar: React.FC<Calendar> = ({calendarImages, finalCalendar, setFinalCa
               </Typography>
             </Grid>
         </Grid>
-        
         <Grid container spacing={1} sx={{justifyContent:'center'}} maxWidth={'xl'}>
           <Grid item xs={10}>
             <Typography
@@ -133,17 +103,14 @@ const Calendar: React.FC<Calendar> = ({calendarImages, finalCalendar, setFinalCa
         {finalCalendar.length === 12? 
           <Grid container sx={{justifyContent:'center', mt: '12px'}}>
             <Grid item>
-              {/* <Button sx={{mt: '12px'}} variant='contained' onClick={(e) => handleAddToCart(e, 'clicked')}>
-                Add to Cart
-              </Button> */}
-              <CartModal/>
+              <CartModal setFinalCalendar={setFinalCalendar} setCalendarImages={setCalendarImages}/>
             </Grid>
           </Grid>
         :
         <Grid container sx={{justifyContent:'center', mt: '40px'}}>
           <Grid item xs={10}>
             <Typography variant='h4' component='h4'>
-              Head to the Images page to choose your images and generate calendar. 
+              Your custom calendar is currently empty. Please return to the images page to fill your calendar.  
             </Typography>
           </Grid>
         </Grid>
@@ -152,7 +119,6 @@ const Calendar: React.FC<Calendar> = ({calendarImages, finalCalendar, setFinalCa
       <Grid container spacing={2} justifyContent='center' mt='20px'>
           {calendarCards}
       </Grid>
-      
     </Container>
    )
 }

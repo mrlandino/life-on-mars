@@ -1,4 +1,3 @@
-import React from "react";
 import { 
   Grid,
   Container,
@@ -61,7 +60,6 @@ const Home = () => {
               <Typography 
                 variant='h1'
                 component='h1' 
-                // mt={2} 
                 sx={{
                   color: 'black', 
                 }}
@@ -73,7 +71,6 @@ const Home = () => {
               <Typography 
                 variant='h1'
                 component='h2'
-                // mt={2} 
                 ml={2} 
                 sx={{
                   fontWeight:'800',
@@ -92,13 +89,13 @@ const Home = () => {
                   <ListItemIcon>
                     <PublicOffOutlinedIcon/>
                   </ListItemIcon>
-                  <ListItemText primary= 'Build your own unique calendar from images in the NASA database!' />
+                  <ListItemText primary= 'Build your own unique calendar from images in the NASA database' />
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
                     <ImageOutlinedIcon/>
                   </ListItemIcon>
-                  <ListItemText primary='Customize and choose your favorite images in the order you choose'/>
+                  <ListItemText primary='Choose your favorite images to add to your calendar'/>
                 </ListItem>
                 <ListItem>
                   <ListItemIcon>
