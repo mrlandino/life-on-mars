@@ -104,7 +104,7 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
     const sendFinal : object[] = [];
       for (let i = 0; i <= 11; i++ ) {
         sendFinal.push({
-          // month: monthNames[i],
+          month: monthNames[i],
           imageURL: calendarImages[i].url
         })
       }

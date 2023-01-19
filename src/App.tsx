@@ -5,56 +5,6 @@ import Images from './Screens/Images';
 import Calendar from './Screens/Calendar';
 import './App.css'
 
-// const finalImageList = [
-//   {
-//     month: 'January',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'February',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'March',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'April',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'May',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'June',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'July',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'August',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'September',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'October',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'November',
-//     imageURL: ''
-//   },
-//   {
-//     month: 'December',
-//     imageURL: ''
-//   },
-// ]
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState<{}>({})

@@ -20,7 +20,7 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ['Images', 'Calendar', 'Cart'];
+const navItems = ['Images', 'Calendar'];
 
 const Nav = (props: Props) => {
   const { window } = props;
