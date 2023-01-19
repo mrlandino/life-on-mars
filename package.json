@@ -49,6 +49,7 @@
     ]
   },
   "devDependencies": {
+    "cypress": "^12.3.0",
     "file-loader": "^6.2.0"
   }
 }
