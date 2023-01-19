@@ -1,4 +1,3 @@
-
 describe('Home Page', () => {
   beforeEach(() =>{
     cy.visit('http://localhost:3000/')
@@ -37,7 +36,6 @@ describe('Home Page', () => {
     cy.url().should('include', '/Images')
   })
 })
-
 
 describe('Images Page to Calendar Page and Order', () => {
   beforeEach(() =>{
@@ -161,8 +159,6 @@ describe('Images Page to Calendar Page and Order', () => {
     cy.get('div').find('a').contains('Order').click()
     
   })
-
-
 })
 
 describe('Calendar Page when empty', () => {
@@ -194,9 +190,4 @@ describe('Calendar Page when empty', () => {
   it('should have description of the page', () => {
   cy.get('main').find('h4').contains('Your custom calendar is currently empty. Please return to the images page to fill your calendar.')
   })
-
 })
-  
-  
-
-

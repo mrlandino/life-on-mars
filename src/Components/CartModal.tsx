@@ -22,7 +22,6 @@ let  theme = createTheme({
           },
           style: {
             fontFamily: 'Poppins'
-            
           }
         },
       ]
