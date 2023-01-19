@@ -1,7 +1,6 @@
-const getImagesByDate = () => {
-  //need to convert the paramete date into (2022-12-02) format that is not a string. 
+const getImageByDate = (date:string) => {
   return (
-    fetch(``)
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=m5I8olTgrZThXai6adDlgLeX8cUOlJ69IzMVpT7w&date=${date}`)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -12,6 +11,4 @@ const getImagesByDate = () => {
   )
 }
 
-export { getImagesByDate }
-
-// `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${}`
+export { getImageByDate }

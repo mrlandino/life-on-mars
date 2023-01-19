@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Grid, Button } from '@mui/material';
+import { getImageByDate } from '../apiCalls';
 
-const DatePicker = () => {
+type DatePicker = {
+  setSelectedImage: React.Dispatch<React.SetStateAction<any>>
+}
+const DatePicker: React.FC<DatePicker> = ({setSelectedImage}) => {
   const [value, setValue] = useState<string>('');
   
   const clearInputs = () => {
@@ -9,7 +13,9 @@ const DatePicker = () => {
   }
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
-    clearInputs();
+    getImageByDate(value)
+    .then(data => setSelectedImage(data))
+    // clearInputs();
   };
 
   const handleChange = (
@@ -17,6 +23,9 @@ const DatePicker = () => {
     ): void => {
       setValue(event.target.value);
   }
+
+  const todaysDate = new Date().toISOString().slice(0, 10)
+
   return (
    <Grid container justifyContent={'center'} >
     <Grid item sx={{mt: '30px', mr: '10px', alignItems: 'center'}}>
@@ -24,9 +33,10 @@ const DatePicker = () => {
        placeholder="Chose Date"
        type='date'
        value={value}
+       min='1995-06-16'
+       max={todaysDate}
        onChange={(event) => {
          handleChange(event)
-         
        }}
      />
     </Grid>
@@ -34,7 +44,6 @@ const DatePicker = () => {
       <Button variant='contained' onClick={(e) => handleClick(e, 'clicked')}> 
         Search
       </Button>
-
     </Grid>
    </Grid>
   );
