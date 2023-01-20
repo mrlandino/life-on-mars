@@ -73,13 +73,13 @@ Start the server
 
 ## API Reference
 NASA API (APOD: Astronomy Picture of the Day)
-```http 
+```
   https://api.nasa.gov/index.html
 ```
 
 #### GET single 'Photo of the Day'
 
-```http
+```
   GET https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2023-01-19
 ```
 
