@@ -1,4 +1,4 @@
-# SpaceCal
+# [SpaceCal](https://spacecal.netlify.app/)
 
 ![App Front Page](./src/Images/Home_Page.png)
 
@@ -6,21 +6,55 @@ This application uses one of the NASA APIs to help the user build a desktop cale
 
 When I started designing this application, I designed it with the idea of using a different NASA API that I later found out is down and not functional. This was the Mars Weather API that had weather sensors on Mars. With the struggle of needing to completely change my idea and pivot to a new design, it was a blessing in disguise for my learnings of using Material UI. 
 
-The SpaceCal application was built using React, TypeScript, and Material UI. This was my first time using this component library and it was very challenging at first to fully understand what the components were doing and how to implement them correctly. It felt just like learning a new language! It was very enjoyable and challenging at the same time. By the end of my MVP,  I feel confident that I can use Material UI and recongnize how to customize and develop new ideas with it. 
+The SpaceCal application was built using React, TypeScript, and Material UI. This was my first time using the MUI component library. It was a pleasant challenge when initially implementing components, and making sure I understood the How's, Why's, and What's of each component I decided to use. By the end of the MVP, I felt confident with my abilities to develop user interfaces with Material UI and am excited to keep working with it in the future.
+
 
 ## Table of Contents
 
+- [Run Locally](#run-locally)
+- [Deployment](#deployment)
 - [Authors](#authors)
 - [Tech Stack](#tech-stack)
 - [API Reference](#api-reference)
 - [Application Previews](#application-previews)
 - [Custom Image Design](#custom-image-design)
 - [Running Tests](#running-tests)
-- [Run Locally](#run-locally)
-- [Deployment](#deployment)
 - [Additional Resources](#additional-resources)
 - [Future Additions](#future-additions)
  
+
+ ## Run Locally
+
+Clone the project
+
+```bash
+  https://github.com/mrlandino/life-on-mars
+```
+
+Go into the project directory
+
+```bash
+  cd life-on-mars
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm start
+```
+
+
+## Deployment
+
+- https://spacecal.netlify.app/
+
+
 ## Authors
 
 - [Ross Landino](https://www.github.com/mrlandino)
@@ -79,36 +113,6 @@ To run end-to-end tests, run the following command
 ```
 
 
-## Run Locally
-
-Clone the project
-
-```bash
-  https://github.com/mrlandino/life-on-mars
-```
-
-Go into the project directory
-
-```bash
-  cd life-on-mars
-```
-
-Install dependencies
-
-```bash
-  npm install
-```
-
-Start the server
-
-```bash
-  npm start
-```
-
-
-## Deployment
-
-- 
 
 ## Additional Resources
 
