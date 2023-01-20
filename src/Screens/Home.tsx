@@ -113,7 +113,7 @@ const Home = () => {
           </Grid>
           <Grid item xs={12} sm={8} md={6}>
             <Grid container direction="row" justifyContent="center" alignItems="center" sx={{mb: '20px', mt: '30px'}}>
-              <img className='home-image'src={require('../Images/Space_Calendars_2023.png')}/>            
+              <img className='home-image'src={require('../Images/Space_Calendars_2023.png')} alt='calendar image'/>            
             </Grid>
           </Grid>
         </Grid>
