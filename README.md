@@ -27,13 +27,13 @@ The SpaceCal application was built using React, TypeScript, and Material UI. Thi
 
 Clone the project
 
-```bash
+```
   https://github.com/mrlandino/life-on-mars
 ```
 
 Go into the project directory
 
-```bash
+```
   cd life-on-mars
 ```
 
