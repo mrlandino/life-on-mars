@@ -67,7 +67,7 @@ Responsive Design
 
 ## Custom Image Design
 
-In building this application I was able to use some skills I learned in my previous career to photoshop an image to depict the calendars that the user is trying to buy.
+In building this application I was able to photoshop an image to depict the calendars that the user is trying to buy.
 ![Space Calendars](./src/Images/Space_Calendars_2023.png)
 
 ## Running Tests
