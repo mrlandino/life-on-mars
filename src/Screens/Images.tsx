@@ -61,6 +61,8 @@ type Images = {
   calendarImages: Image[];
   setCalendarImages: React.Dispatch<React.SetStateAction<object[]>>
   setFinalCalendar: React.Dispatch<React.SetStateAction<object[]>>
+  error: boolean;
+  setError: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 type Image= {
@@ -75,14 +77,23 @@ type Image= {
 
 theme = responsiveFontSizes(theme)
 
-const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarImages, calendarImages, setFinalCalendar}) => {
+const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarImages, calendarImages, setFinalCalendar, error, setError}) => {
   const monthNames: string[] = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER']
 
   const todaysDate = new Date().toISOString().slice(0, 10)
 
   useEffect(() => {
     getImageByDate('2022-01-13')
+    .then(response => {
+      if (response.ok) {
+        setError(false)
+        return response.json();
+      } else {
+        setError(true)
+      }
+    })
     .then(data => setSelectedImage(data))
+    // .catch(() => setError(true))
   }, [])
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
@@ -149,7 +160,7 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
           </Grid>
         </Grid>
       <Grid container spacing={2} justifyContent='center'>
-        <DatePicker setSelectedImage={setSelectedImage}/>
+        <DatePicker setSelectedImage={setSelectedImage} setError={setError}/>
       </Grid>
       <Grid container spacing={2} justifyContent='center' mt='20px'>
         {calendarImages.length > 0?
@@ -178,6 +189,7 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
           </>
         }
       </Grid>
+      {!error && selectedImage.media_type === 'image' ?
       <Grid container sx={{justifyContent:'center'}}>
         <Grid item xs={12} sm={8} md={8} >
           <Card sx={{mt: '30px', justifyContent:'center'}}>
@@ -208,6 +220,15 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
           </Card>
         </Grid>
       </Grid>
+        :
+        <Grid container sx={{justifyContent:'center'}}>
+            <Grid item>
+              <Typography variant='h4' component='h4' sx={{mr:'25px', ml: '25px', mt: '25px'}}>
+                Image unavailable please try another date. 
+              </Typography>
+            </Grid>
+          </Grid>
+       }
     </ThemeProvider>  
     <Toolbar></Toolbar>
     </Container>
