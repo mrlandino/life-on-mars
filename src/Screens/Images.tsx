@@ -93,7 +93,6 @@ const Images: React.FC<Images> = ({selectedImage, setSelectedImage, setCalendarI
       }
     })
     .then(data => setSelectedImage(data))
-    // .catch(() => setError(true))
   }, [])
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
