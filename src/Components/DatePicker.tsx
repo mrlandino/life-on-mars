@@ -4,12 +4,21 @@ import { getImageByDate } from '../apiCalls';
 
 type DatePicker = {
   setSelectedImage: React.Dispatch<React.SetStateAction<any>>
+  setError: React.Dispatch<React.SetStateAction<boolean>>
 }
-const DatePicker: React.FC<DatePicker> = ({setSelectedImage}) => {
+const DatePicker: React.FC<DatePicker> = ({setSelectedImage, setError}) => {
   const [value, setValue] = useState<string>('');
 
   const handleClick = (event: React.MouseEvent<HTMLElement>, text: string) => {
     getImageByDate(value)
+    .then(response => {
+        if (response.ok) {
+          setError(false)
+          return response.json();
+        } else {
+          setError(true)
+        }
+    })
     .then(data => setSelectedImage(data))
   };
 
